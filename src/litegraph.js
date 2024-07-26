@@ -16,7 +16,7 @@
 
         CANVAS_GRID_SIZE: 10,
 
-        NODE_TITLE_HEIGHT: 30,
+        NODE_TITLE_HEIGHT: 30, 
         NODE_TITLE_TEXT_Y: 20,
         NODE_SLOT_HEIGHT: 20,
         NODE_WIDGET_HEIGHT: 50,
@@ -5362,8 +5362,8 @@ LGraphNode.prototype.executeAction = function(action)
         this.use_gradients = false; //set to true to render titlebar with gradients
         this.editor_alpha = 1; //used for transition
         this.pause_rendering = false;
-        this.clear_background = true;
-        this.clear_background_color = "#222";
+        this.clear_background = false;
+        this.clear_background_color = "#000";
 
 		this.read_only = false; //if set to true users cannot modify the graph
         this.render_only_selected = true;
@@ -8435,7 +8435,7 @@ LGraphNode.prototype.executeAction = function(action)
             ) {
                 if (this.zoom_modify_alpha) {
                     ctx.globalAlpha =
-                        (1.0 - 0.5 / this.ds.scale) * this.editor_alpha;
+                        0;
                 } else {
                     ctx.globalAlpha = this.editor_alpha;
                 }
@@ -9109,7 +9109,7 @@ LGraphNode.prototype.executeAction = function(action)
 			if(!node.flags.collapsed && render_title)
 			{
 				ctx.shadowColor = "transparent";
-				ctx.fillStyle = "rgba(0,0,0,0.2)";
+				ctx.fillStyle = fgcolor;
 				ctx.fillRect(0, -1, area[2], 2);
 			}
         }
@@ -9167,7 +9167,7 @@ LGraphNode.prototype.executeAction = function(action)
             var colState = false;
             if (LiteGraph.node_box_coloured_by_mode){
                 if(LiteGraph.NODE_MODES_COLORS[node.mode]){
-                    colState = LiteGraph.NODE_MODES_COLORS[node.mode];
+                    colState = fgcolor;
                 }
             }
             if (LiteGraph.node_box_coloured_when_on){
@@ -9196,7 +9196,7 @@ LGraphNode.prototype.executeAction = function(action)
                     ctx.fill();
                 }
                 
-                ctx.fillStyle = node.boxcolor || colState || LiteGraph.NODE_DEFAULT_BOXCOLOR;
+                ctx.fillStyle = fgcolor;
 				if(low_quality)
 					ctx.fillRect( title_height * 0.5 - box_size *0.5, title_height * -0.5 - box_size *0.5, box_size , box_size  );
 				else
@@ -9902,7 +9902,7 @@ LGraphNode.prototype.executeAction = function(action)
                 y = w.y;
             }
             w.last_y = y;
-            ctx.strokeStyle = outline_color;
+            ctx.strokeStyle = "outline_color";
             ctx.fillStyle = "#222";
             ctx.textAlign = "left";
 			//ctx.lineWidth = 2;
