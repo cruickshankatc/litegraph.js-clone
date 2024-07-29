@@ -24,10 +24,10 @@
         NODE_MIN_WIDTH: 50,
         NODE_COLLAPSED_RADIUS: 10,
         NODE_COLLAPSED_WIDTH: 80,
-        NODE_TITLE_COLOR: "#999",
+        NODE_TITLE_COLOR: "#fff",
         NODE_SELECTED_TITLE_COLOR: "#FFF",
         NODE_TEXT_SIZE: 14,
-        NODE_TEXT_COLOR: "#AAA",
+        NODE_TEXT_COLOR: "#fff",
         NODE_SUBTEXT_SIZE: 12,
         NODE_DEFAULT_COLOR: "#212225",
         NODE_DEFAULT_BGCOLOR: "#353535",
@@ -42,9 +42,9 @@
         WIDGET_TEXT_COLOR: "#DDD",
         WIDGET_SECONDARY_TEXT_COLOR: "#999",
 
-        LINK_COLOR: "#9A9",
-        EVENT_LINK_COLOR: "#A86",
-        CONNECTING_LINK_COLOR: "#AFA",
+        LINK_COLOR: "red",
+        EVENT_LINK_COLOR: "orange",
+        CONNECTING_LINK_COLOR: "yellow",
 
         MAX_NUMBER_OF_NODES: 1000, //avoid infinite loops
         DEFAULT_POSITION: [100, 100], //default node position
@@ -4303,6 +4303,7 @@
 
         //seek for the output slot
         if (slot.constructor === String) {
+            this.console.log("hola gays");
             slot = this.findOutputSlot(slot);
             if (slot == -1) {
                 if (LiteGraph.debug) {
@@ -5336,9 +5337,9 @@ LGraphNode.prototype.executeAction = function(action)
         this.ds = new DragAndScale();
         this.zoom_modify_alpha = true; //otherwise it generates ugly patterns when scaling down too much
 
-        this.title_text_font = "" + LiteGraph.NODE_TEXT_SIZE + "px Arial";
+        this.title_text_font = "" + LiteGraph.NODE_TEXT_SIZE + "px public+sans";
         this.inner_text_font =
-            "normal " + LiteGraph.NODE_SUBTEXT_SIZE + "px Arial";
+            "normal " + LiteGraph.NODE_SUBTEXT_SIZE + "px public+sans";
         this.node_title_color = LiteGraph.NODE_TITLE_COLOR;
         this.default_link_color = LiteGraph.LINK_COLOR;
         this.default_connection_color = {
@@ -8139,7 +8140,7 @@ LGraphNode.prototype.executeAction = function(action)
         ctx.globalAlpha = 1;
 
         ctx.fillStyle = "#888";
-        ctx.font = "14px Arial";
+        ctx.font = "14px public+sans";
         ctx.textAlign = "left";
         ctx.fillText("Graph Inputs", 20, 34);
         // var pos = this.mouse;
@@ -8150,7 +8151,7 @@ LGraphNode.prototype.executeAction = function(action)
         }
 
         var y = 50;
-        ctx.font = "14px Arial";
+        ctx.font = "14px public+sans";
         if (subnode.inputs)
             for (var i = 0; i < subnode.inputs.length; ++i) {
                 var input = subnode.inputs[i];
@@ -8208,7 +8209,7 @@ LGraphNode.prototype.executeAction = function(action)
         ctx.globalAlpha = 1;
 
         ctx.fillStyle = "#888";
-        ctx.font = "14px Arial";
+        ctx.font = "14px public+sans";
         ctx.textAlign = "left";
         var title_text = "Graph Outputs"
         var tw = ctx.measureText(title_text).width
@@ -8220,7 +8221,7 @@ LGraphNode.prototype.executeAction = function(action)
         }
 
         var y = 50;
-        ctx.font = "14px Arial";
+        ctx.font = "14px public+sans";
         if (subnode.outputs)
             for (var i = 0; i < subnode.outputs.length; ++i) {
                 var output = subnode.outputs[i];
@@ -8294,7 +8295,7 @@ LGraphNode.prototype.executeAction = function(action)
 			{
 				ctx.fillStyle = textcolor;
 				ctx.textAlign = "center";
-				ctx.font = ((h * 0.65)|0) + "px Arial";
+				ctx.font = ((h * 0.65)|0) + "px public+sans";
 				ctx.fillText( text, x + w * 0.5,y + h * 0.75 );
 				ctx.textAlign = "left";
 			}
@@ -8329,7 +8330,7 @@ LGraphNode.prototype.executeAction = function(action)
         ctx.save();
         ctx.translate(x, y);
 
-        ctx.font = "10px Arial";
+        ctx.font = "10px public+sans";
         ctx.fillStyle = "#888";
 		ctx.textAlign = "left";
         if (this.graph) {
@@ -8382,7 +8383,7 @@ LGraphNode.prototype.executeAction = function(action)
             ctx.lineWidth = 10;
             ctx.strokeRect(1, 1, canvas.width - 2, canvas.height - 2);
             ctx.lineWidth = 1;
-            ctx.font = "40px Arial";
+            ctx.font = "40px public+sans";
             ctx.textAlign = "center";
             ctx.fillStyle = subgraph_node.bgcolor || "#AAA";
             var title = "";
@@ -9041,6 +9042,7 @@ LGraphNode.prototype.executeAction = function(action)
         ctx.strokeStyle = "#212225";
         ctx.fillStyle = "#212225";
 
+
         if (node.inputs) {
             for (var i = 0; i < node.inputs.length; i++) {
                 node.inputs[i].color_on = fgcolor;
@@ -9326,11 +9328,11 @@ LGraphNode.prototype.executeAction = function(action)
                 (shape == LiteGraph.CARD_SHAPE && node.flags.collapsed)
             ) {
                 ctx.roundRect(
-                    -6 + area[0],
-                    -6 + area[1],
-                    12 + area[2],
-                    12 + area[3],
-                    [this.round_radius * 2]
+                    1 + area[0],
+                    1 + area[1],
+                    0 + area[2],
+                    -1 + area[3],
+                    [this.round_radius]
                 );
             } else if (shape == LiteGraph.CARD_SHAPE) {
                 ctx.roundRect(
@@ -9338,7 +9340,7 @@ LGraphNode.prototype.executeAction = function(action)
                     -6 + area[1],
                     12 + area[2],
                     12 + area[3],
-                    [this.round_radius * 2,2,this.round_radius * 2,2]
+                    [this.round_radius]
                 );
             } else if (shape == LiteGraph.CIRCLE_SHAPE) {
                 ctx.arc(
@@ -10341,7 +10343,7 @@ LGraphNode.prototype.executeAction = function(action)
 
             var font_size =
                 group.font_size || LiteGraph.DEFAULT_GROUP_FONT_SIZE;
-            ctx.font = font_size + "px Arial";
+            ctx.font = font_size + "px public+sans";
 			ctx.textAlign = "left";
             ctx.fillText(group.title, pos[0] + 4, pos[1] + font_size);
         }

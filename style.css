@@ -1,5 +1,7 @@
 body { 
 	background-color: #DDD;
+	font-family: "Public Sans", sans-serif;
+  font-optical-sizing: auto;
  }
 
 h1 {
