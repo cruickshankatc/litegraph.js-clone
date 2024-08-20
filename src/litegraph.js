@@ -42,9 +42,9 @@
         WIDGET_TEXT_COLOR: "#DDD",
         WIDGET_SECONDARY_TEXT_COLOR: "#999",
 
-        LINK_COLOR: "red",
-        EVENT_LINK_COLOR: "orange",
-        CONNECTING_LINK_COLOR: "yellow",
+        LINK_COLOR: "#9A9",
+        EVENT_LINK_COLOR: "#A86",
+        CONNECTING_LINK_COLOR: "#AFA",
 
         MAX_NUMBER_OF_NODES: 1000, //avoid infinite loops
         DEFAULT_POSITION: [100, 100], //default node position
@@ -4303,7 +4303,6 @@
 
         //seek for the output slot
         if (slot.constructor === String) {
-            this.console.log("hola gays");
             slot = this.findOutputSlot(slot);
             if (slot == -1) {
                 if (LiteGraph.debug) {
